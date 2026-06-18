@@ -1,0 +1,26 @@
+const express = require('express');
+const path = require('path');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+const movieDatabase = [
+    {
+        id: 1,
+        title: "Big Buck Bunny",
+        description: "A large, lovable rabbit deals with bullying forest creatures.",
+        thumbnail: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400",
+        videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    }
+];
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/api/movies', (req, res) => {
+    res.json(movieDatabase);
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running`);
+});
